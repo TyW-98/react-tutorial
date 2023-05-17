@@ -4,12 +4,16 @@ function Navbar() {
   return (
     <>
       <header>
-        <nav>
+        <nav className="navbar">
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
-            width="100px"
+            className="react-logo"
           />
-          <h1>Reasons I'm excited to learn React</h1>
+          <ul className="nav-items">
+            <li>Pricing</li>
+            <li>About</li>
+            <li>Contact</li>
+          </ul>
         </nav>
       </header>
     </>

@@ -8,11 +8,11 @@ function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <>
+    <div className="contents">
       <Navbar />
       <Content />
       <Footer />
-    </>
+    </div>
   );
 }
 
