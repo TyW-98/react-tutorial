@@ -4,7 +4,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import Content from "./Content";
 
-function App() {
+export default function App() {
   const [count, setCount] = useState(0);
 
   return (
@@ -15,5 +15,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

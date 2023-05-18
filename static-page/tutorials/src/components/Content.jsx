@@ -1,6 +1,4 @@
-import React from "react";
-
-function Content() {
+export default function Content() {
   return (
     <div className="main-content">
       <h1>Reasons I'm excited to learn React</h1>
@@ -14,5 +12,3 @@ function Content() {
     </div>
   );
 }
-
-export default Content;
