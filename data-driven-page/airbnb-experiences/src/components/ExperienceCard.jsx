@@ -4,7 +4,10 @@ import StarIcon from "../assets/star-icon.svg";
 export default function ExperienceCard() {
   return (
     <div className="individual-card">
-      <img src={SwimmerImage} className="card-image" />
+      <div className="card-image-container">
+        <img src={SwimmerImage} className="card-image" />
+        <div className="soldout-box">SOLD OUT</div>
+      </div>
       <div>
         <div>
           <div className="rating-container">
