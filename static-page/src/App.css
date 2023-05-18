@@ -29,7 +29,10 @@
 /* Main */
 .main-container {
     color: white;
-    max-width: 500px;
+    background-image: url("./assets/reactjs-icon-2.svg");
+    background-size: 252px 223px;
+    background-repeat: no-repeat;
+    background-position: 112% 75%;
 }
 
 .main-container>h1 {
