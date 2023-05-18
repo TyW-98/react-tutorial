@@ -76,8 +76,9 @@
   align-items: center;
 }
 
-/* ================ About Section =================== */
-.about-container {
+/* ================ About & Interest Section =================== */
+.about-container,
+.interest-container {
   background-color: #1A1B21;
   text-align: left;
   padding-top: 33px;
@@ -85,16 +86,22 @@
   padding-right: 34px;
 }
 
-.about-container>h3 {
+.about-container>h3,
+.interest-container>h3 {
   font-size: 20px;
   line-height: 150%;
   margin-bottom: 5px;
   color: #F5F5F5;
 }
 
-.about-container>p {
+.about-container>p,
+.interest-container>p {
   font-size: 14px;
   font-weight: 400;
   color: #DCDCDC;
   line-height: 150%;
+}
+
+.interest-container {
+  padding-bottom: 24px;
 }
