@@ -21,13 +21,15 @@
 
 /* =========== Form =========== */
 .form-container {
-  margin-top: 36px;
+  margin: 36px 20px 0;
   text-align: center;
+
 }
 
 .form-main {
-  width: 80%;
-  margin: 0 auto;
+  display: grid;
+  grid-template: 40px 40px / 1fr 1fr;
+  gap: 20px;
 }
 
 .form-input-container input {
@@ -45,11 +47,12 @@
 
 .submit-btn {
   display: block;
-  margin: 15px auto 0;
   padding: 10px;
   font-size: 16px;
   background: linear-gradient(90deg, #672280 1.18%, #A626D3 100%);
   color: white;
   width: 100%;
   border-radius: 5px;
+  cursor: pointer;
+  grid-column: 1 / -1;
 }
