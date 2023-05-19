@@ -4,7 +4,7 @@ export default function Card(props) {
   return (
     <>
       <div className="card-container">
-        <div>
+        <div className="card-image-container">
           <img src={props.items.image} className="card-image" />
         </div>
         <div className="card-content">
@@ -24,7 +24,6 @@ export default function Card(props) {
           </div>
         </div>
       </div>
-      <hr className="card-divider" />
     </>
   );
 }
