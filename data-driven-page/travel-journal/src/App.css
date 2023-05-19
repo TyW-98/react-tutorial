@@ -1,0 +1,85 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+/* ============ Navbar ============ */
+.navbar-container {
+  display: flex;
+  background-color: #f55a5a;
+  align-items: center;
+  color: white;
+  padding: 20px 0;
+  justify-content: center;
+}
+
+.navbar-icon {
+  margin-right: 10px;
+}
+
+.navbar-container>h4 {
+  font-size: 20px;
+}
+
+/* ============ Journal =============== */
+.journal-container {
+  margin: 45px auto;
+  width: 70%;
+}
+
+
+/* ============ Journal Card =============== */
+.card-container {
+  display: flex;
+  vertical-align: center;
+  align-items: center;
+  padding-bottom: 18px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.card-container:not(:first-child) {
+  padding-top: 18px;
+  border-top: solid 1px #818181;
+}
+
+.card-image-container {
+  margin-left: 25px;
+}
+
+.card-content {
+  margin-left: 20px;
+}
+
+.card-details {
+  margin-bottom: 4px;
+}
+
+.location-icon {
+  width: 12px;
+  background-color: white;
+  margin-right: 4px;
+}
+
+.map-link {
+  margin-left: 12px;
+  font-size: 11px;
+  color: #918E9B
+}
+
+.card-description>h2 {
+  margin-bottom: 17px;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.card-description>h5 {
+  margin-bottom: 9px;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.card-description>p {
+  font-size: 10px;
+  line-height: 150%;
+}
