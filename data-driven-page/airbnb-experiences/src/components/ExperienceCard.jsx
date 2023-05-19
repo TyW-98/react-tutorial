@@ -1,25 +1,24 @@
-import SwimmerImage from "../assets/swimmer-image.svg";
 import StarIcon from "../assets/star-icon.svg";
 
-export default function ExperienceCard() {
+export default function ExperienceCard(props) {
   return (
     <div className="individual-card">
       <div className="card-image-container">
-        <img src={SwimmerImage} className="card-image" />
+        <img src={props.activityImage} className="card-image" />
         <div className="soldout-box">SOLD OUT</div>
       </div>
       <div>
         <div>
           <div className="rating-container">
             <img src={StarIcon} className="star-icon" />
-            <span>5.0</span>
-            <span>(6)</span>
-            <span className="dot">.</span>
-            <span>USA</span>
+            <span>{props.rating}</span>
+            <span>({props.reviewCount})</span>
+            <span>•</span>
+            <span>{props.country}</span>
           </div>
-          <p className="activity">Swimming Lessons with Katie Zaferes</p>
+          <p className="activity">{props.title}</p>
           <p className="pricing">
-            <strong>From $316</strong>/person
+            <strong>From ${props.price}</strong> /person
           </p>
         </div>
       </div>
