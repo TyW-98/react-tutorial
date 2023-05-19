@@ -5,7 +5,7 @@ export default function ExperienceCard(props) {
     <div className="individual-card">
       <div className="card-image-container">
         <img src={props.activityImage} className="card-image" />
-        <div className="soldout-box">SOLD OUT</div>
+        <span className="soldout-box">SOLD OUT</span>
       </div>
       <div>
         <div>

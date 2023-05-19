@@ -56,6 +56,13 @@
 .experience-container {
   margin-top: 49px;
   padding-bottom: 50px;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  overflow-x: auto;
+  width: 80%;
+  overflow-x: auto;
+  gap: 35px;
 }
 
 .individual-card {
@@ -80,6 +87,8 @@
 .card-image {
   width: 250px;
   max-width: 250px;
+  max-height: 350px;
+
 }
 
 .rating-container {

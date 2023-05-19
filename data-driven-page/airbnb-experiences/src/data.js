@@ -1,6 +1,6 @@
 import swimmingImage from "./assets/swimmer-image.svg";
 import weddingImage from "./assets/wedding-image.svg";
-import mountainImage from "./assets/mountain-image.svg";
+import mountainImage from "./assets/mountain-image.png";
 
 export default [
   {
@@ -44,5 +44,19 @@ export default [
     },
     country: "Norway",
     openSpots: 3,
+  },
+  {
+    id: 4,
+    title: "Swimming Lessons with Katie Zaferes",
+    description:
+      'I will share with you what I call "Positively Impactful Moments of Disappointment." Throughout my career, many of my highest moments only came after setbacks and losses. But learning from those difficult moments is what gave me the ability to rise above them and reach my goals.',
+    price: 136,
+    coverImg: swimmingImage,
+    stats: {
+      rating: 5.0,
+      reviewCount: 6,
+    },
+    country: "USA",
+    openSpots: 0,
   },
 ];
