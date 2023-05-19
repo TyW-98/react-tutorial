@@ -1,11 +1,17 @@
 import StarIcon from "../assets/star-icon.svg";
 
 export default function ExperienceCard(props) {
+  let badgeText;
+  if (props.openSpots === 0) {
+    badgeText = "SOLD OUT";
+  } else if (props.country.toLowerCase() === "online") {
+    badgeText = "ONLINE";
+  }
   return (
     <div className="individual-card">
       <div className="card-image-container">
         <img src={props.activityImage} className="card-image" />
-        <span className="soldout-box">SOLD OUT</span>
+        {badgeText && <span className="soldout-box">{badgeText}</span>}
       </div>
       <div>
         <div>

@@ -29,7 +29,7 @@ export default [
       reviewCount: 30,
     },
     country: "Online",
-    openSpots: 27,
+    openSpots: 5,
   },
   {
     id: 3,
@@ -43,7 +43,7 @@ export default [
       reviewCount: 2,
     },
     country: "Norway",
-    openSpots: 3,
+    openSpots: 0,
   },
   {
     id: 4,
@@ -57,6 +57,6 @@ export default [
       reviewCount: 6,
     },
     country: "USA",
-    openSpots: 0,
+    openSpots: 11,
   },
 ];

@@ -12,6 +12,7 @@ export default function Experience() {
         country={info.country}
         title={info.title}
         price={info.price}
+        openSpots={info.openSpots}
       />
     );
   });
