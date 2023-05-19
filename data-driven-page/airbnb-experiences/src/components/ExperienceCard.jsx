@@ -10,15 +10,15 @@ export default function ExperienceCard(props) {
   return (
     <div className="individual-card">
       <div className="card-image-container">
-        <img src={props.activityImage} className="card-image" />
+        <img src={props.coverImg} className="card-image" />
         {badgeText && <span className="soldout-box">{badgeText}</span>}
       </div>
       <div>
         <div>
           <div className="rating-container">
             <img src={StarIcon} className="star-icon" />
-            <span>{props.rating}</span>
-            <span>({props.reviewCount})</span>
+            <span>{props.stats.rating}</span>
+            <span>({props.stats.reviewCount})</span>
             <span>•</span>
             <span>{props.country}</span>
           </div>
