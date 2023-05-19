@@ -4,10 +4,10 @@ import geirangerfjord from "./assets/geirangerfjord.png";
 
 export default [
   {
+    id: 1,
     title: "Mount Fuji",
     country: "Japan",
-    googleEarthUrl:
-      "https://earth.google.com/web/search/mount+fuji/@35.360625,138.7273634,3772.04769706a,4381.21387038d,35y,0h,45t,0r/data=CnUaSxJFCiUweDYwMTk2MjlhNDJmZGM4OTk6MHhhNmExZmNjOTE2ZjNhNGRmGURN9PkorkFAIdbpm49GV2FAKgptb3VudCBmdWppGAIgASImCiQJqdYlPVftQMARwiAjqU3uQMAZgSMlFB7nYkAh_ogFQsbmYkAoAg",
+    googleMapsUrl: "https://goo.gl/maps/HCMVdi5p6bxmDLPs9?coh=178573&entry=tt",
     startDate: "12 Jan 2021",
     endDate: "24 Jan 2021",
     description:
@@ -15,9 +15,10 @@ export default [
     image: MountFujiImage,
   },
   {
+    id: 2,
     title: "Sydney Opera House",
     country: "Australia",
-    googleEarthUrl: "",
+    googleMapsUrl: "https://goo.gl/maps/ZRjeBVF6HuFzjxcB9?coh=178573&entry=tt",
     startDate: "27 May 2021",
     endDate: "8 Jun 2021",
     description:
@@ -25,9 +26,10 @@ export default [
     image: sydneyOperaHouse,
   },
   {
+    id: 3,
     title: "Geirangerfjord",
     country: "Norway",
-    googleEarthUrl: "",
+    googleMapsUrl: "https://goo.gl/maps/zaxSn8k92uwG4irL8?coh=178573&entry=tt",
     startDate: "01 Oct 2021",
     endDate: "18 Nov 2021",
     description:
