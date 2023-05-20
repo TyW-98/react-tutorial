@@ -1,13 +1,18 @@
+import { useState } from "react";
 import data from "../data";
 
 export default function Form(props) {
+  const [imgUrl, setImgUrl] = useState("");
+
   function getRandomNumber() {
     return Math.floor(Math.random() * data.data.memes.length);
   }
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(data.data.memes[getRandomNumber()].url);
+    setImgUrl(() => {
+      return data.data.memes[getRandomNumber()].url;
+    });
   }
 
   return (
@@ -20,6 +25,9 @@ export default function Form(props) {
             Get a new Image 🖼
           </button>
         </form>
+      </div>
+      <div>
+        <img src={imgUrl} className="meme-image" />
       </div>
     </main>
   );
