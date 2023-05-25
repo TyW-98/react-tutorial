@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Sidebar from "./components/Sidebar";
 import Editor from "./components/Editor";
 import Split from "react-split";
 import { nanoid } from "nanoid";
 
 export default function App() {
-  const [notes, setNotes] = React.useState([]);
-  const [currentNoteId, setCurrentNoteId] = React.useState(
+  const [notes, setNotes] = useState(() => {
+    const localStoredNotes = localStorage.getItem("notes");
+    return localStoredNotes ? JSON.parse(localStoredNotes) : [];
+  });
+
+  const [currentNoteId, setCurrentNoteId] = useState(
     (notes[0] && notes[0].id) || ""
   );
 
@@ -28,6 +32,10 @@ export default function App() {
       })
     );
   }
+
+  useEffect(() => {
+    localStorage.setItem("notes", JSON.stringify(notes));
+  }, [notes]);
 
   function findCurrentNote() {
     return (
