@@ -3,7 +3,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #21222A;
     padding: 10px 1.6875rem;
 }
 
@@ -22,6 +21,14 @@
     font-size: 16px;
 }
 
+.navbar-darkmode {
+    background-color: #21222A;
+}
+
+.navbar-lightmode {
+    background-color: white;
+}
+
 .react-logo {
     width: 40px;
 }
@@ -31,8 +38,11 @@
     align-items: center;
 }
 
-.switch p {
-    margin: 0;
+.switch-light-mode p {
+    color: black;
+}
+
+.switch-dark-mode p {
     color: white;
 }
 
@@ -57,7 +67,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
+    background-color: black;
     transition: 0.4s;
     border-radius: 34px;
 }
@@ -75,8 +85,9 @@
 }
 
 input:checked+.slider {
-    background-color: #2196f3;
+    background-color: rgb(69, 166, 211)
 }
+
 
 input:checked+.slider:before {
     transform: translateX(26px);

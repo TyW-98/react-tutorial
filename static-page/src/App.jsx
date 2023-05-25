@@ -4,9 +4,17 @@ import Navbar from "./components/Navbar";
 import Main from "./components/Main";
 
 function App() {
+  const [toggleMode, setToggleMode] = useState(false);
+
+  function handleToggle() {
+    setToggleMode((prevToggleMode) => {
+      return !prevToggleMode;
+    });
+  }
+
   return (
     <>
-      <Navbar />
+      <Navbar handleToggle={handleToggle} toggleMode={toggleMode} />
       <Main />
     </>
   );
