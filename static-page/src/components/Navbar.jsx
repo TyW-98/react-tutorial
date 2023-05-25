@@ -1,3 +1,4 @@
+import React from "react";
 import ReactLogo from "../assets/reactjs-icon.svg";
 
 export default function Navbar() {
@@ -7,7 +8,14 @@ export default function Navbar() {
         <img src={ReactLogo} className="react-logo" />
         <h2>ReactFacts</h2>
       </div>
-      <h5>React Course - Project 1</h5>
+      <div className="switch">
+        <p>Light</p>
+        <label className="switch-toggle">
+          <input type="checkbox" />
+          <span className="slider round"></span>
+        </label>
+        <p>Dark</p>
+      </div>
     </div>
   );
 }
