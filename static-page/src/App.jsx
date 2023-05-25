@@ -13,10 +13,10 @@ function App() {
   }
 
   return (
-    <>
+    <div className="container">
       <Navbar handleToggle={handleToggle} toggleMode={toggleMode} />
-      <Main />
-    </>
+      <Main toggleMode={toggleMode} />
+    </div>
   );
 }
 

@@ -1,3 +1,9 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
 /* Navbar */
 .navbar-container {
     display: flex;
@@ -95,13 +101,17 @@ input:checked+.slider:before {
 
 /* Main */
 .main-container {
-    color: white;
     background-image: url("./assets/reactjs-icon-2.svg");
     background-size: 252px 223px;
     background-repeat: no-repeat;
-    background-position: 112% 75%;
-    width: max-content;
-    margin: 0 auto;
+    background-position: 112% center;
+    flex: 1 1 auto;
+    color: #2B283A;
+}
+
+.main-container-darkmode {
+    color: white;
+    background-color: #282D35;
 }
 
 .main-container>h1 {
