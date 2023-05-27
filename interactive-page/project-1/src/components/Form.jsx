@@ -1,8 +1,7 @@
-import { useState } from "react";
-import data from "../data";
+import { useState, useEffect } from "react";
 
 export default function Form(props) {
-  const [imageData, setImageData] = useState(data);
+  const [imageData, setImageData] = useState({});
 
   const [image, setImage] = useState({
     topText: "",
@@ -11,16 +10,15 @@ export default function Form(props) {
   });
 
   function getRandomNumber() {
-    return Math.floor(Math.random() * data.data.memes.length);
+    return Math.floor(Math.random() * imageData.length);
   }
 
   function handleSubmit(event) {
     event.preventDefault();
     setImage((prevImage) => {
-      console.log(prevImage);
       return {
         ...prevImage,
-        randomImage: data.data.memes[getRandomNumber()].url,
+        randomImage: imageData[getRandomNumber()].url,
       };
     });
   }
@@ -34,6 +32,14 @@ export default function Form(props) {
       };
     });
   }
+
+  useEffect(() => {
+    fetch("https://api.imgflip.com/get_memes")
+      .then((res) => res.json())
+      .then((data) => {
+        setImageData(data.data.memes);
+      });
+  }, []);
 
   return (
     <main>
