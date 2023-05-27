@@ -24,14 +24,29 @@ export default function App() {
   }
 
   function updateNote(text) {
-    setNotes((oldNotes) =>
-      oldNotes.map((oldNote) => {
-        return oldNote.id === currentNoteId
-          ? { ...oldNote, body: text }
-          : oldNote;
-      })
-    );
+    setNotes((prevNotes) => {
+      const updatedNote = {
+        ...prevNotes.find((note) => {
+          return note.id === currentNoteId;
+        }),
+        body: text,
+      };
+      const otherNotes = prevNotes.filter((note) => {
+        return note.id !== currentNoteId;
+      });
+      return [updatedNote, ...otherNotes];
+    });
   }
+
+  // function updateNote(text) {
+  //   setNotes((oldNotes) =>
+  //     oldNotes.map((oldNote) => {
+  //       return oldNote.id === currentNoteId
+  //         ? { ...oldNote, body: text }
+  //         : oldNote;
+  //     })
+  //   );
+  // }
 
   useEffect(() => {
     localStorage.setItem("notes", JSON.stringify(notes));
