@@ -2,15 +2,19 @@ import { useState } from "react";
 import Dice from "./Dice";
 
 export default function Game() {
-  const [value, setValue] = useState(
-    Array.from({ length: 10 }, (_, index) => index + 1)
+  function generateRandomNumber() {
+    return Math.floor(Math.random() * 6 + 1);
+  }
+
+  const [diceValues, setDiceValues] = useState(
+    Array.from({ length: 10 }, (_, index) => generateRandomNumber())
   );
-  console.log(value);
+
   return (
     <div className="game-container">
       <div className="all-dice-container">
-        {value.map((item, index) => {
-          return <Dice value={item} key={index} />;
+        {diceValues.map((value, index) => {
+          return <Dice value={value} key={index} />;
         })}
       </div>
 
