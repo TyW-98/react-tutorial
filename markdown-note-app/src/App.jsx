@@ -38,15 +38,15 @@ export default function App() {
     });
   }
 
-  // function updateNote(text) {
-  //   setNotes((oldNotes) =>
-  //     oldNotes.map((oldNote) => {
-  //       return oldNote.id === currentNoteId
-  //         ? { ...oldNote, body: text }
-  //         : oldNote;
-  //     })
-  //   );
-  // }
+  function deleteNote(event, noteId) {
+    event.stopPropagation();
+    setNotes((prevNotes) => {
+      const newNotes = prevNotes.filter((note) => {
+        return note.id !== noteId;
+      });
+      return newNotes;
+    });
+  }
 
   useEffect(() => {
     localStorage.setItem("notes", JSON.stringify(notes));
@@ -69,6 +69,7 @@ export default function App() {
             currentNote={findCurrentNote()}
             setCurrentNoteId={setCurrentNoteId}
             newNote={createNewNote}
+            deleteNote={deleteNote}
           />
           {currentNoteId && notes.length > 0 && (
             <Editor currentNote={findCurrentNote()} updateNote={updateNote} />
