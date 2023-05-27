@@ -3,6 +3,8 @@ import Sidebar from "./components/Sidebar";
 import Editor from "./components/Editor";
 import Split from "react-split";
 import { nanoid } from "nanoid";
+import { onSnapshot, addDoc, doc, deleteDoc, setDoc } from "firebase/firestore";
+import { notesCollection, db } from "../db";
 
 export default function App() {
   const [notes, setNotes] = useState(() => {
@@ -10,47 +12,44 @@ export default function App() {
     return localStoredNotes ? JSON.parse(localStoredNotes) : [];
   });
 
-  const [currentNoteId, setCurrentNoteId] = useState(
-    (notes[0] && notes[0].id) || ""
-  );
-
-  function createNewNote() {
-    const newNote = {
-      id: nanoid(),
-      body: "# Type your markdown note's title here",
-    };
-    setNotes((prevNotes) => [newNote, ...prevNotes]);
-    setCurrentNoteId(newNote.id);
-  }
-
-  function updateNote(text) {
-    setNotes((prevNotes) => {
-      const updatedNote = {
-        ...prevNotes.find((note) => {
-          return note.id === currentNoteId;
-        }),
-        body: text,
-      };
-      const otherNotes = prevNotes.filter((note) => {
-        return note.id !== currentNoteId;
-      });
-      return [updatedNote, ...otherNotes];
-    });
-  }
-
-  function deleteNote(event, noteId) {
-    event.stopPropagation();
-    setNotes((prevNotes) => {
-      const newNotes = prevNotes.filter((note) => {
-        return note.id !== noteId;
-      });
-      return newNotes;
-    });
-  }
+  const [currentNoteId, setCurrentNoteId] = useState("");
+  const [tempNoteText, setTempNoteText] = useState("");
 
   useEffect(() => {
-    localStorage.setItem("notes", JSON.stringify(notes));
+    if (!currentNoteId) {
+      setCurrentNoteId(notes[0]?.id);
+    }
   }, [notes]);
+
+  async function createNewNote() {
+    const newNote = {
+      body: "# Type your markdown note's title here",
+      createdAt: Date.now(),
+      updatedAt: Date.now(),
+    };
+    const newNoteRef = await addDoc(notesCollection, newNote);
+    setCurrentNoteId(newNoteRef.id);
+  }
+
+  // Local Update Note
+  // function updateNote(text) {
+  //   setNotes((prevNotes) => {
+  //     const updatedNote = {
+  //       ...prevNotes.find((note) => {
+  //         return note.id === currentNoteId;
+  //       }),
+  //       body: text,
+  //     };
+  //     const otherNotes = prevNotes.filter((note) => {
+  //       return note.id !== currentNoteId;
+  //     });
+  //     return [updatedNote, ...otherNotes];
+  //   });
+  // }
+
+  const sortedNotes = notes.sort((noteA, noteB) => {
+    return noteB.updatedAt - noteA.updatedAt;
+  });
 
   function findCurrentNote() {
     return (
@@ -60,20 +59,64 @@ export default function App() {
     );
   }
 
+  async function updateNote(text) {
+    const updateNoteRef = doc(db, "notes", currentNoteId);
+    await setDoc(
+      updateNoteRef,
+      { body: text, updatedAt: Date.now() },
+      { merge: true }
+    );
+  }
+
+  useEffect(() => {
+    const currentNote = findCurrentNote();
+    if (currentNote) {
+      setTempNoteText(currentNote.body);
+    }
+  }, [notes]);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (tempNoteText !== findCurrentNote().body) {
+        updateNote(tempNoteText);
+      }
+    }, 500);
+    return () => clearTimeout(timeoutId);
+  }, [tempNoteText]);
+
+  async function deleteNote(noteId) {
+    const deleteNoteRef = doc(db, "notes", noteId);
+    await deleteDoc(deleteNoteRef);
+  }
+
+  useEffect(() => {
+    const unmount = onSnapshot(notesCollection, (snapshot) => {
+      const notesArr = snapshot.docs.map((doc) => {
+        return {
+          ...doc.data(),
+          id: doc.id,
+        };
+      });
+      setNotes(notesArr);
+    });
+    return unmount;
+  }, []);
+
   return (
     <main>
       {notes.length > 0 ? (
         <Split sizes={[30, 70]} direction="horizontal" className="split">
           <Sidebar
-            notes={notes}
+            notes={sortedNotes}
             currentNote={findCurrentNote()}
             setCurrentNoteId={setCurrentNoteId}
             newNote={createNewNote}
             deleteNote={deleteNote}
           />
-          {currentNoteId && notes.length > 0 && (
-            <Editor currentNote={findCurrentNote()} updateNote={updateNote} />
-          )}
+          <Editor
+            tempNoteText={tempNoteText}
+            setTempNoteText={setTempNoteText}
+          />
         </Split>
       ) : (
         <div className="no-notes">
