@@ -1,7 +1,10 @@
 export default function Dice(props) {
   return (
-    <div className="dice-container">
-      <h5>{props.value}</h5>
+    <div
+      className={`dice-container ${props.diceObject.isHeld ? "held-dice" : ""}`}
+      onClick={() => props.handleDice(props.diceObject.id)}
+    >
+      <h5>{props.diceObject.value}</h5>
     </div>
   );
 }
