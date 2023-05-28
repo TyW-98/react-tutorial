@@ -6,6 +6,7 @@ import Confetti from "react-confetti";
 
 export default function Game() {
   const { width, height } = useWindowSize();
+  const { numberOfRolls, setNumberOfRolls } = useState(0);
 
   function generateRandomNumber() {
     return Math.floor(Math.random() * 6 + 1);
@@ -99,7 +100,6 @@ export default function Game() {
           );
         })}
       </div>
-
       <button className="roll-btn" onClick={handleRoll}>
         {gameStatus ? "PLAY AGAIN" : "ROLL"}
       </button>
