@@ -29,13 +29,26 @@ export default function Game() {
   function handleRoll() {
     setDiceValues((prevDiceValues) => {
       return prevDiceValues.map((dice) => {
-        return {
-          ...dice,
-          value: generateRandomNumber(),
-        };
+        return dice.isHeld
+          ? { ...dice }
+          : {
+              ...dice,
+              value: generateRandomNumber(),
+            };
       });
     });
   }
+
+  //   function handleRoll() {
+  //     setDiceValues((prevDiceValues) => {
+  //       return prevDiceValues.map((dice) => {
+  //         return {
+  //           ...dice,
+  //           value: generateRandomNumber(),
+  //         };
+  //       });
+  //     });
+  //   }
 
   return (
     <div className="game-container">
