@@ -31,16 +31,44 @@ export default function Game() {
     });
   }
 
+  // function handleRoll() {
+  //   setDiceValues((prevDiceValues) => {
+  //     if (!gameStatus) {
+  //       return prevDiceValues.map((dice) => {
+  //         return dice.isHeld
+  //           ? { ...dice }
+  //           : {
+  //               ...dice,
+  //               value: generateRandomNumber(),
+  //             };
+  //       });
+  //     } else {
+  //       return prevDiceValues.map(() => {
+  //         return {
+  //           id: nanoid(),
+  //           value: generateRandomNumber(),
+  //           isHeld: false,
+  //         };
+  //       });
+  //     }
+  //   });
+  // }
+
   function handleRoll() {
     setDiceValues((prevDiceValues) => {
-      return prevDiceValues.map((dice) => {
-        return dice.isHeld
-          ? { ...dice }
-          : {
-              ...dice,
+      return !gameStatus
+        ? prevDiceValues.map((dice) => {
+            return dice.isHeld
+              ? { ...dice }
+              : { ...dice, value: generateRandomNumber() };
+          })
+        : prevDiceValues.map(() => {
+            return {
+              id: nanoid(),
               value: generateRandomNumber(),
+              isHeld: false,
             };
-      });
+          });
     });
   }
 
@@ -73,7 +101,7 @@ export default function Game() {
       </div>
 
       <button className="roll-btn" onClick={handleRoll}>
-        {gameStatus ? "RESET GAME" : "ROLL"}
+        {gameStatus ? "PLAY AGAIN" : "ROLL"}
       </button>
     </div>
   );
