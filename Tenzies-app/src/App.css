@@ -2,4 +2,86 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+.outer-container {
+  width: 60%;
+  margin: 150px auto;
+  text-align: center;
+  background-color: #0B2434;
+  padding: 50px 35px;
+  border-radius: 10px;
+}
+
+.inner-container {
+  background-color: white;
+  border-radius: 10px;
+  padding: 34px;
+  align-items: center;
+  justify-items: center;
+}
+
+.header-container {
+  width: 75%;
+  margin: 0 auto;
+  line-height: 25px;
+  font-weight: 400;
+}
+
+.header-container h2 {
+  font-size: 36px;
+}
+
+.header-container h5 {
+  margin-top: 10px;
+  font-size: 16px
+}
+
+.game-container {
+  margin-top: 30px;
+}
+
+.all-dice-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: auto auto;
+  gap: 35px;
+}
+
+.dice-container {
+  width: 55px;
+  height: 55px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  background-color: #cf8c0f;
+  font-size: 30px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.held-dice {
+  background-color: #061925;
+  color: white;
+}
+
+.roll-btn {
+  width: 125px;
+  height: 50px;
+  margin-top: 26px;
+  position: relative;
+  background-color: #2a7ad6;
+  box-shadow: 0px 3.2px 7.68px rgba(0, 0, 0, 0.18);
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-family: 'Karla', sans-serif;
+}
+
+.dice-container:active,
+.roll-btn:active {
+  box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
 }
