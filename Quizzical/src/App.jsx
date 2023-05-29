@@ -18,7 +18,7 @@ export default function App() {
       {!startGame ? (
         <LandingPage handleStartBtn={handleStartBtn} />
       ) : (
-        <QuizPage />
+        <QuizPage handleStartBtn={handleStartBtn}/>
       )}
       <div className="bottom-left-blob"></div>
     </>

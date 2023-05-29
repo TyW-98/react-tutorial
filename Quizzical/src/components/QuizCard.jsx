@@ -1,20 +1,19 @@
-export default function QuizCard() {
+export default function QuizCard(props) {
   return (
     <div className="quiz-card-container">
-      <h3 className="question">How would one say goodbye in Spanish?</h3>
+      <h3 className="question">{props.question}</h3>
       <div className="answer-container">
-        <button type="button" className="answer-btn">
-          Adiós
-        </button>
-        <button type="button" className="answer-btn">
-          Adiós
-        </button>
-        <button type="button" className="answer-btn">
-          Adiós
-        </button>
-        <button type="button" className="answer-btn">
-          Adiós
-        </button>
+        {props.answers.map((answer) => {
+          return (
+            <button
+              type="button"
+              className="answer-btn"
+              key={props.answers.findIndex((item) => item === answer)}
+            >
+              {answer}
+            </button>
+          );
+        })}
       </div>
     </div>
   );
