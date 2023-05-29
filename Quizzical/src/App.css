@@ -54,3 +54,47 @@
   background-color: #4D5B9E;
   border-radius: 15px;
 }
+
+
+/* ========= Quiz Page ============== */
+.quiz-container {
+  margin-left: 75px;
+  margin-top: 140px;
+  z-index: 2;
+}
+
+.quiz-card-container {
+  border-bottom: solid 1px #DBDEF0;
+  padding-bottom: 20px;
+  margin-right: 300px
+}
+
+.question {
+  font-weight: 700;
+  font-size: 25px;
+}
+
+.answer-container {
+  display: flex;
+  margin-top: 15px;
+  gap: 50px;
+}
+
+.answer-btn {
+  padding: 5px 0;
+  text-align: center;
+  border-radius: 15px;
+  width: 100px;
+  background-color: transparent;
+}
+
+.check-answers-btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.check-answers-btn {
+  padding: 10px 20px;
+  border-radius: 10px;
+}
