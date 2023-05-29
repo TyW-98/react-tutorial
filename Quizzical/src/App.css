@@ -63,6 +63,14 @@
   z-index: 2;
 }
 
+.back-btn {
+  margin-bottom: 20px;
+  font-size: 20px;
+  cursor: pointer;
+  text-decoration: underline;
+  color: rgb(151, 151, 223);
+}
+
 .quiz-card-container {
   border-bottom: solid 1px #DBDEF0;
   padding-bottom: 20px;
