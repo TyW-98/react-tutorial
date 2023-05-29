@@ -1,12 +1,25 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import LandingPage from "./components/LandingPage";
+import QuizPage from "./components/QuizPage";
 
 export default function App() {
+  const [startGame, setStartGame] = useState(false);
+
+  function handleStartBtn() {
+    setStartGame((prevStartGame) => {
+      return !prevStartGame;
+    });
+  }
+
   return (
     <>
       <div className="top-right-blob"></div>
-      <LandingPage />
+      {!startGame ? (
+        <LandingPage handleStartBtn={handleStartBtn} />
+      ) : (
+        <QuizPage />
+      )}
       <div className="bottom-left-blob"></div>
     </>
   );
