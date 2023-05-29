@@ -3,6 +3,7 @@
   margin: 0;
   font-family: 'Karla', sans-serif;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 /* ========== Display Shapes ============= */
@@ -105,4 +106,5 @@
 .check-answers-btn {
   padding: 10px 20px;
   border-radius: 10px;
+  background-color: darkgoldenrod;
 }
