@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import QuizCard from "./QuizCard";
 import { nanoid } from "nanoid";
 import BeatLoader from "react-spinners/BeatLoader";
+import { decode } from "html-entities";
 
 export default function QuizPage(props) {
   const [questions, setQuestions] = useState([]);
@@ -16,6 +17,7 @@ export default function QuizPage(props) {
             ...q,
             id: nanoid(),
             options: shuffleArray([...q.incorrect_answers, q.correct_answer]),
+            question: decode(q.question),
           }))
         );
       })
@@ -64,3 +66,4 @@ export default function QuizPage(props) {
     </div>
   );
 }
+// *TODO: Set style when option is clicked & Check if answer is correct or not
