@@ -1,0 +1,56 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'Karla', sans-serif;
+  box-sizing: border-box;
+}
+
+/* ========== Display Shapes ============= */
+.top-right-blob,
+.bottom-left-blob {
+  width: 350px;
+  height: 275px;
+  position: absolute;
+}
+
+.top-right-blob {
+  background-color: #e4a724;
+  border-radius: 50% / 70% 50% 60% 40%;
+  right: -95px;
+  top: -50px;
+}
+
+.bottom-left-blob {
+  background-color: skyblue;
+  border-radius: 50% / 30% 70% 50% 70%;
+  ;
+  bottom: -50px;
+  left: -95px;
+}
+
+
+/* ========== Landing Page ============= */
+.landing-page-container {
+  overflow-y: hidden;
+  text-align: center;
+  margin-top: 500px;
+}
+
+.landing-page-container h1 {
+  font-size: 50px;
+  margin-bottom: 10px;
+}
+
+.landing-page-container h5 {
+  font-size: 20px;
+  margin: 0 70px;
+}
+
+.start-btn {
+  margin-top: 29px;
+  width: 200px;
+  height: 52px;
+  color: white;
+  background-color: #4D5B9E;
+  border-radius: 15px;
+}
