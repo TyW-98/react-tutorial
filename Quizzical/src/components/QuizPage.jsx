@@ -9,6 +9,7 @@ export default function QuizPage(props) {
   const [loading, setLoading] = useState(true);
   const [gameStatus, setGameStatus] = useState(false);
   const [score, setScore] = useState(0);
+  const [allAnswerSelected, setAllAnswerSelected] = useState(false);
 
   useEffect(() => {
     fetch("https://opentdb.com/api.php?amount=5&difficulty=easy&type=multiple")
@@ -28,9 +29,9 @@ export default function QuizPage(props) {
   }, [props.startGame]);
 
   function handleCheckAnswers() {
-    setGameStatus((prevGameStatus) => {
-      return !prevGameStatus;
-    });
+    questions.every((q) => q.selectedOption)
+      ? (setGameStatus(true), setAllAnswerSelected(true))
+      : setAllAnswerSelected(false);
   }
 
   function resetGame() {
