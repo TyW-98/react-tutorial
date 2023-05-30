@@ -7,8 +7,12 @@ import { decode } from "html-entities";
 export default function QuizPage(props) {
   const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [gameStatus, setGameStatus] = useState(false);
+  const [score, setScore] = useState(0);
+  const [allAnswerSelected, setAllAnswerSelected] = useState(false);
 
   useEffect(() => {
+    console.log("useEffect running");
     fetch("https://opentdb.com/api.php?amount=5&difficulty=easy&type=multiple")
       .then((res) => res.json())
       .then((data) => {
@@ -18,14 +22,38 @@ export default function QuizPage(props) {
             id: nanoid(),
             options: shuffleArray([...q.incorrect_answers, q.correct_answer]),
             question: decode(q.question),
+            selectedOption: null,
           }))
         );
       })
       .then(() => setLoading(false));
   }, []);
 
-  function handleCheckAnswers(event) {
-    event.preventDefault();
+  function handleCheckAnswers() {
+    questions.every((q) => q.answered)
+      ? (setGameStatus(true), setAllAnswerSelected(false), calculateScore())
+      : setAllAnswerSelected(true);
+  }
+
+  function resetGame() {
+    console.log("resetgame running");
+    setScore(0);
+    setLoading(true);
+    fetch("https://opentdb.com/api.php?amount=5&difficulty=easy&type=multiple")
+      .then((res) => res.json())
+      .then((data) => {
+        setQuestions(
+          data.results.map((q) => ({
+            ...q,
+            id: nanoid(),
+            options: shuffleArray([...q.incorrect_answers, q.correct_answer]),
+            question: decode(q.question),
+            selectedOption: null,
+          }))
+        );
+      })
+      .then(() => setGameStatus(false))
+      .then(() => setLoading(false));
   }
 
   function shuffleArray(array) {
@@ -34,6 +62,33 @@ export default function QuizPage(props) {
       [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
+  }
+
+  function handleAnswers(event, questionId, answerId) {
+    event.preventDefault();
+    setQuestions((prevQuestions) => {
+      return prevQuestions.map((q) => {
+        return q.id === questionId
+          ? {
+              ...q,
+              selectedOption: answerId,
+              answered: true,
+            }
+          : q;
+      });
+    });
+  }
+
+  function calculateScore() {
+    setScore((prevScore) => {
+      let newScore = prevScore;
+      questions.map((q) => {
+        if (q.correct_answer === q.options[q.selectedOption]) {
+          newScore++;
+        }
+      });
+      return newScore;
+    });
   }
 
   return (
@@ -50,17 +105,32 @@ export default function QuizPage(props) {
             ← Back
           </h5>
           {questions.map((q) => (
-            <QuizCard key={q.id} question={q.question} answers={q.options} />
+            <QuizCard
+              key={q.id}
+              data={q}
+              question={q.question}
+              answers={q.options}
+              gameStatus={gameStatus}
+              handleAnswers={handleAnswers}
+            />
           ))}
           <div className="check-answers-btn-container">
+            {gameStatus ? <h3>You scored {score}/5</h3> : ""}
             <button
               type="button"
               className="check-answers-btn"
-              onClick={(event) => handleCheckAnswers(event)}
+              onClick={
+                !gameStatus ? () => handleCheckAnswers() : () => resetGame()
+              }
             >
-              Check answers
+              {gameStatus ? "Play Again" : "Check Answers"}
             </button>
           </div>
+          {allAnswerSelected && (
+            <h3 className="warning-msg">
+              You have to select one option for each question
+            </h3>
+          )}
         </div>
       )}
     </div>
