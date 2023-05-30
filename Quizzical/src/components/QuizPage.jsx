@@ -12,6 +12,7 @@ export default function QuizPage(props) {
   const [allAnswerSelected, setAllAnswerSelected] = useState(false);
 
   useEffect(() => {
+    console.log("useEffect running");
     fetch("https://opentdb.com/api.php?amount=5&difficulty=easy&type=multiple")
       .then((res) => res.json())
       .then((data) => {
@@ -26,15 +27,17 @@ export default function QuizPage(props) {
         );
       })
       .then(() => setLoading(false));
-  }, [props.startGame]);
+  }, []);
 
   function handleCheckAnswers() {
-    questions.every((q) => q.selectedOption)
-      ? (setGameStatus(true), setAllAnswerSelected(false))
+    questions.every((q) => q.answered)
+      ? (setGameStatus(true), setAllAnswerSelected(false), calculateScore())
       : setAllAnswerSelected(true);
   }
 
   function resetGame() {
+    console.log("resetgame running");
+    setScore(0);
     setLoading(true);
     fetch("https://opentdb.com/api.php?amount=5&difficulty=easy&type=multiple")
       .then((res) => res.json())
@@ -69,9 +72,22 @@ export default function QuizPage(props) {
           ? {
               ...q,
               selectedOption: answerId,
+              answered: true,
             }
           : q;
       });
+    });
+  }
+
+  function calculateScore() {
+    setScore((prevScore) => {
+      let newScore = prevScore;
+      questions.map((q) => {
+        if (q.correct_answer === q.options[q.selectedOption]) {
+          newScore++;
+        }
+      });
+      return newScore;
     });
   }
 
