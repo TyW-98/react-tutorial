@@ -1,0 +1,148 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'Karla', sans-serif;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* ========== Display Shapes ============= */
+.top-right-blob,
+.bottom-left-blob {
+  width: 350px;
+  height: 275px;
+  position: absolute;
+  z-index: 0;
+}
+
+.top-right-blob {
+  background-color: #e4a724;
+  border-radius: 50% / 70% 50% 60% 40%;
+  right: -95px;
+  top: -65px;
+}
+
+.bottom-left-blob {
+  background-color: skyblue;
+  border-radius: 50% / 30% 70% 50% 70%;
+  ;
+  bottom: -65px;
+  left: -95px;
+}
+
+
+/* ========== Landing Page ============= */
+.landing-page-container {
+  overflow-y: hidden;
+  text-align: center;
+  margin-top: 17.5%;
+}
+
+.landing-page-container h1 {
+  font-size: 50px;
+  margin-bottom: 10px;
+}
+
+.landing-page-container h5 {
+  font-size: 20px;
+  margin: 0 70px;
+}
+
+.start-btn {
+  margin-top: 29px;
+  width: 200px;
+  height: 52px;
+  color: white;
+  background-color: #4D5B9E;
+  border-radius: 15px;
+}
+
+
+/* ========= Quiz Page ============== */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.loading-component {
+  text-align: center;
+}
+
+.quiz-container {
+  margin: 7.5% auto 0;
+  z-index: 2;
+  width: max-content;
+}
+
+.back-btn {
+  font-size: 20px;
+  cursor: pointer;
+  text-decoration: underline;
+  color: rgb(151, 151, 223);
+}
+
+.quiz-card-container {
+  border-bottom: solid 1px #DBDEF0;
+  max-width: 800px;
+  padding: 20px 10px;
+}
+
+.question {
+  font-weight: 700;
+  font-size: 25px;
+}
+
+.answer-container {
+  display: flex;
+  margin-top: 15px;
+  gap: 50px;
+}
+
+.answer-btn {
+  padding: 5px 0;
+  text-align: center;
+  border-radius: 15px;
+  width: 150px;
+  background-color: transparent;
+}
+
+.check-answers-btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  align-items: center;
+}
+
+.check-answers-btn-container h3 {
+  margin-right: 20px;
+}
+
+.check-answers-btn {
+  padding: 10px 20px;
+  border-radius: 10px;
+  background-color: darkgoldenrod;
+}
+
+.selected-answer {
+  background-color: rgb(243, 189, 10);
+}
+
+.correct-answer {
+  background-color: green;
+}
+
+.wrong-answer {
+  background-color: rgb(224, 48, 48);
+}
+
+.corrected-answer {
+  background-color: rgb(180, 125, 207);
+}
+
+.warning-msg {
+  text-align: center;
+  margin: 20px 0;
+  color: red;
+}
