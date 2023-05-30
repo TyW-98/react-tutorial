@@ -140,3 +140,9 @@
 .corrected-answer {
   background-color: rgb(180, 125, 207);
 }
+
+.warning-msg {
+  text-align: center;
+  margin: 20px 0;
+  color: red;
+}

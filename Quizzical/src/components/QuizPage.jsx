@@ -30,8 +30,8 @@ export default function QuizPage(props) {
 
   function handleCheckAnswers() {
     questions.every((q) => q.selectedOption)
-      ? (setGameStatus(true), setAllAnswerSelected(true))
-      : setAllAnswerSelected(false);
+      ? (setGameStatus(true), setAllAnswerSelected(false))
+      : setAllAnswerSelected(true);
   }
 
   function resetGame() {
@@ -110,6 +110,11 @@ export default function QuizPage(props) {
               {gameStatus ? "Play Again" : "Check Answers"}
             </button>
           </div>
+          {allAnswerSelected && (
+            <h3 className="warning-msg">
+              You have to select one option for each question
+            </h3>
+          )}
         </div>
       )}
     </div>
