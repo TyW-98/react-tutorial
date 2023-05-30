@@ -112,10 +112,31 @@
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  align-items: center;
+}
+
+.check-answers-btn-container h3 {
+  margin-right: 20px;
 }
 
 .check-answers-btn {
   padding: 10px 20px;
   border-radius: 10px;
   background-color: darkgoldenrod;
+}
+
+.selected-answer {
+  background-color: rgb(243, 189, 10);
+}
+
+.correct-answer {
+  background-color: green;
+}
+
+.wrong-answer {
+  background-color: rgb(224, 48, 48);
+}
+
+.corrected-answer {
+  background-color: rgb(180, 125, 207);
 }

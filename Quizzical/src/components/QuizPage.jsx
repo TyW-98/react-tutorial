@@ -7,6 +7,8 @@ import { decode } from "html-entities";
 export default function QuizPage(props) {
   const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [gameStatus, setGameStatus] = useState(false);
+  const [score, setScore] = useState(0);
 
   useEffect(() => {
     fetch("https://opentdb.com/api.php?amount=5&difficulty=easy&type=multiple")
@@ -18,14 +20,36 @@ export default function QuizPage(props) {
             id: nanoid(),
             options: shuffleArray([...q.incorrect_answers, q.correct_answer]),
             question: decode(q.question),
+            selectedOption: null,
           }))
         );
       })
       .then(() => setLoading(false));
-  }, []);
+  }, [props.startGame]);
 
-  function handleCheckAnswers(event) {
-    event.preventDefault();
+  function handleCheckAnswers() {
+    setGameStatus((prevGameStatus) => {
+      return !prevGameStatus;
+    });
+  }
+
+  function resetGame() {
+    setLoading(true);
+    fetch("https://opentdb.com/api.php?amount=5&difficulty=easy&type=multiple")
+      .then((res) => res.json())
+      .then((data) => {
+        setQuestions(
+          data.results.map((q) => ({
+            ...q,
+            id: nanoid(),
+            options: shuffleArray([...q.incorrect_answers, q.correct_answer]),
+            question: decode(q.question),
+            selectedOption: null,
+          }))
+        );
+      })
+      .then(() => setGameStatus(false))
+      .then(() => setLoading(false));
   }
 
   function shuffleArray(array) {
@@ -34,6 +58,20 @@ export default function QuizPage(props) {
       [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
+  }
+
+  function handleAnswers(event, questionId, answerId) {
+    event.preventDefault();
+    setQuestions((prevQuestions) => {
+      return prevQuestions.map((q) => {
+        return q.id === questionId
+          ? {
+              ...q,
+              selectedOption: answerId,
+            }
+          : q;
+      });
+    });
   }
 
   return (
@@ -50,15 +88,25 @@ export default function QuizPage(props) {
             ← Back
           </h5>
           {questions.map((q) => (
-            <QuizCard key={q.id} question={q.question} answers={q.options} />
+            <QuizCard
+              key={q.id}
+              data={q}
+              question={q.question}
+              answers={q.options}
+              gameStatus={gameStatus}
+              handleAnswers={handleAnswers}
+            />
           ))}
           <div className="check-answers-btn-container">
+            {gameStatus ? <h3>You scored {score}/5</h3> : ""}
             <button
               type="button"
               className="check-answers-btn"
-              onClick={(event) => handleCheckAnswers(event)}
+              onClick={
+                !gameStatus ? () => handleCheckAnswers() : () => resetGame()
+              }
             >
-              Check answers
+              {gameStatus ? "Play Again" : "Check Answers"}
             </button>
           </div>
         </div>
